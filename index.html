@@ -31,22 +31,22 @@
         async function redirect() {
             try {
                 document.getElementById('status').textContent = 'Получение данных...';
-                const e = "aHR0cHM6Ly9nZXRzb2xhcmEuZGV2L2FwaS9lbmRwb2ludC5qc29u";
-                const t = atob(e);
-                const response = await fetch(t);
+                const encryptedUrl = "aHR0cHM6Ly9nZXRzb2xhcmEuZGV2L2FwaS9lbmRwb2ludC5qc29u";
+                const apiUrl = atob(encryptedUrl);
+                const response = await fetch(apiUrl);
                 
-                if (!response.ok) throw new Error(`Ошибка: ${response.status}`);
+                if (!response.ok) throw new Error(`Ошибка соединения: ${response.status}`);
                 
                 const data = await response.json();
-                const n = Object.keys(data).find(k => k.toLowerCase().includes('url'));
+                const targetUrl = data.SoftwareUrl;
                 
-                if (!n) throw new Error('Ссылка не найдена');
+                if (!targetUrl) throw new Error('Не удалось получить ссылку');
                 
-                window.location.href = data[n];
+                window.location.href = targetUrl;
                 
             } catch (error) {
-                document.getElementById('error').innerHTML = `Ошибка: ${error.message}`;
-                document.getElementById('status').textContent = 'Обновите страницу (F5).';
+                document.getElementById('error').textContent = `Ошибка: ${error.message}`;
+                document.getElementById('status').textContent = 'Попробуйте позже.';
             }
         }
 
